@@ -17,6 +17,12 @@ spec:
           image: widgetario/products-db:21.03
           ports:
             - containerPort: 5432
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: POSTGRES_PASSWORD
 ---
 apiVersion: v1
 kind: Service
