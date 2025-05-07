@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-config
+data:
+  THEME: "dark"
+  LOGO_URL: "https://github.com/Njihia097/Widgetario-hackathon/blob/main/docs/img01-logo.jpg"
