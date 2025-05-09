@@ -1,3 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: stock-api
+  labels:
+    kubernetes.courselabs.co: hackathon
+    app: widgetario
+spec:
+  ports:
+    - port: 80
+      targetPort: http
+  selector:
+    app: widgetario
+    component: stock-api
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: stock-api-connection
+  labels:
+    kubernetes.courselabs.co: hackathon
+type: Opaque
+stringData:
+  POSTGRES_CONNECTION_STRING: "host=products-db-0.products-db.default.svc.cluster.local port=5432 user=postgres password=h4ckkath0n dbname=postgres sslmode=disable"
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,7 +42,9 @@ spec:
       labels: 
         app: widgetario
         component: stock-api
-        hackathon: part-1
+        hackathon: part-7
+      annotations:
+        prometheus.io/scrape: "true"
     spec:
       automountServiceAccountToken: false
       containers:
