@@ -4,6 +4,7 @@ metadata:
   name: products-api
   labels:
     kubernetes.courselabs.co: hackathon
+
 spec:
   selector:
     matchLabels:
