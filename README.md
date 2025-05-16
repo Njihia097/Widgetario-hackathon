@@ -62,18 +62,6 @@ Then access the API at:
 
 ---
 
-## ✅ Testing
-
-Run the test cases to validate functionality:
-
-```bash
-kubectl apply -k k8s/tests
-```
-
-More detailed instructions are available in the `/tests` directory.
-
----
-
 ## 🚢 Deployment Instructions
 
 To deploy the full system including ingress:
@@ -89,4 +77,25 @@ Then access the services via:
 👉 [http://widgetario.local](http://widgetario.local)
 
 ---
+
+## CI/CD
+You can integrate GitHub Actions to auto-deploy changes:
+
+.github/workflows/deploy.yml:
+
+name: Deploy to Kubernetes  
+on:  
+  push:  
+    branches: [ main ]
+
+jobs:  
+  deploy:  
+    runs-on: ubuntu-latest  
+    steps:  
+    - uses: actions/checkout@v3  
+    - name: Set up kubectl  
+      uses: azure/setup-kubectl@v3  
+    - name: Deploy manifests  
+      run: |  
+        kubectl apply -f k8s/
 
