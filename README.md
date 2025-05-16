@@ -83,6 +83,7 @@ You can integrate GitHub Actions to auto-deploy changes:
 
 .github/workflows/deploy.yml:
 
+```bash
 name: Deploy to Kubernetes  
 on:  
   push:  
@@ -98,4 +99,4 @@ jobs:
     - name: Deploy manifests  
       run: |  
         kubectl apply -f k8s/
-
+```
