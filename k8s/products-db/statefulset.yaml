@@ -17,7 +17,7 @@ spec:
       labels:
         app: widgetario
         component: products-db
-    spec:      
+
       containers:
         - name: app
           image: widgetario/products-db-replicated:21.03          
@@ -27,6 +27,7 @@ spec:
           ports:
             - containerPort: 5432
               name: postgres
+
           volumeMounts:
             - name: data
               mountPath: /var/lib/postgresql/data  

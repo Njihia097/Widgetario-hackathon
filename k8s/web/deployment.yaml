@@ -6,6 +6,7 @@ metadata:
     kubernetes.courselabs.co: hackathon
     app: widgetario
 spec:
+
   selector:
     matchLabels:
         app: widgetario
@@ -17,12 +18,12 @@ spec:
         component: web
         hackathon: part-1
     spec:
+
       containers:
         - name: app
           image: widgetario/web:21.03
           ports:
-            - containerPort: 80
-              name: http
+
           envFrom:
             - configMapRef:
                 name: web-features
