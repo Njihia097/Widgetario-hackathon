@@ -10,7 +10,7 @@
 
 - `/k8s`: Kubernetes manifests for deployments, services, and configurations  
 - `/docs`: Documentation related to the project  
-- `/tests`: Test configurations and scripts
+
 
 ---
 
