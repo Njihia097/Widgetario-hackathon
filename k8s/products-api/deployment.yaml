@@ -4,9 +4,7 @@ metadata:
   name: products-api
   labels:
     kubernetes.courselabs.co: hackathon
-    app: widgetario
-spec:
-  replicas: 2
+
   selector:
     matchLabels:
         app: widgetario
@@ -18,29 +16,14 @@ spec:
         component: products-api
         hackathon: part-1
     spec:
-      automountServiceAccountToken: false
+
       containers:
         - name: app
           image: widgetario/products-api:21.03
           ports:
             - containerPort: 80
               name: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-            periodSeconds: 20
-            failureThreshold: 1
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-            periodSeconds: 30
-            initialDelaySeconds: 20
-          resources:
-            limits:
-              cpu: 300m
-              memory: 300Mi 
+
           volumeMounts:
             - name: db-properties
               mountPath: "/app/config"

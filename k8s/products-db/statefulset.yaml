@@ -17,8 +17,7 @@ spec:
       labels:
         app: widgetario
         component: products-db
-    spec:
-      automountServiceAccountToken: false      
+
       containers:
         - name: app
           image: widgetario/products-db-replicated:21.03          
@@ -28,22 +27,7 @@ spec:
           ports:
             - containerPort: 5432
               name: postgres
-          readinessProbe:
-            tcpSocket:
-              port: postgres
-            periodSeconds: 10
-            initialDelaySeconds: 10
-            failureThreshold: 1
-          livenessProbe:
-            exec:
-              command: ["pg_isready", "-h", "localhost"]
-            periodSeconds: 60
-            initialDelaySeconds: 20
-            failureThreshold: 2
-          resources:
-            limits:
-              cpu: 200m
-              memory: 150Mi 
+
           volumeMounts:
             - name: data
               mountPath: /var/lib/postgresql/data  
